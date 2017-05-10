@@ -1,0 +1,41 @@
+{
+  "name": "krojs",
+  "version": "0.0.1",
+  "description": "A backend framework for APIs in nodejs",
+  "main": "server.js",
+  "bin": {
+    "krojs": "./bin/krojs.js"
+  },
+  "engines": {
+    "node": ">=6.5.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vroudge/krojs.git"
+  },
+  "keywords": [
+    "framework",
+    "back-end",
+    "node",
+    "router"
+  ],
+  "author": "vroudge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vroudge/krojs/issues"
+  },
+  "homepage": "https://github.com/vroudge/krojs#readme",
+  "dependencies": {
+    "colors": "~1.1.2",
+    "commander": "~2.9.0",
+    "nodegit": "~0.18.3",
+    "prompt": "~1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "~6.24.1",
+    "babel-preset-env": "~1.4.0"
+  }
+}
