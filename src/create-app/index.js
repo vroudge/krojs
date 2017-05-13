@@ -1,8 +1,11 @@
 import prompt from '../util/prompt';
 import output from '../util/output';
+
 import createDirectory from '../util/create-directory';
 import createGitRepository from '../util/create-git-repo';
+import copyTemplate from '../util/copy-directory';
 
+import kroPackage from '../../package.json';
 
 const appSchema = {
     properties: {
@@ -21,7 +24,7 @@ const appSchema = {
             message: 'y/n?',
             default: 'y',
             required: true,
-            before: (value) => value==='y' || value==='yes',
+            before: (value) => value === 'y' || value === 'yes',
         }
     }
 };
@@ -40,15 +43,25 @@ export default () => {
 
             const brewingList = [createDirectory(app, path)];
 
-            if(createGitRepo){
+            if (createGitRepo) {
                 brewingList.push(createGitRepository(path));
             }
             return Promise.all(brewingList);
         })
         .then(() => {
+            const templateStringReplacements = [{
+                label: '$appName',
+                value: app
+            },{
+                label: '$kroVersion',
+                value: kroPackage.version
+            }];
+            return copyTemplate('template-app', path, templateStringReplacements);
+        })
+        .then(() => {
             output(`Served a fresh ${app} at ${path}`);
 
-            if(createGit){
+            if (createGit) {
                 output(`With a fizzy git repository`);
             }
         })
